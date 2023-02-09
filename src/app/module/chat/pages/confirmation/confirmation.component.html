@@ -1,0 +1,16 @@
+<section>
+  <h1 mat-dialog-title>Confirm Logout</h1>
+
+  <div mat-dialog-content>
+    <h3>Are you you want to logout ?</h3>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" type="reset" (click)="onNoClick()">
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" type="submit" (keydown.enter)="$event.preventDefault()" cdkFocusInitial
+      (click)="onSubmit()">
+      Ok
+    </button>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+.message {
+    background-color: #ffff;
+    max-width: 40%;
+    padding: 10px;
+    border: none;
+    margin: 10px;
+    overflow-x: hidden;
+    border-radius: 10px;
+    min-height: 20px;
+
+    p {
+        position: relative;
+    }
+}
+
+.left {
+    float: left;
+    clear: both;
+    height: min-content;
+    min-width: 100px;
+    word-break: break-all;
+    background-color: #bffccc;
+    .inactiveLink {
+        pointer-events: none;
+        cursor: default;
+     }
+}
+
+.right {
+    float: right;
+    clear: both;
+    height: min-content;
+    min-width: 100px;
+    word-break: break-all;
+
+    .inactiveLink {
+        pointer-events: none;
+        cursor: default;
+     }
+}
+
+.sender-name {
+    position: absolute;
+    position: absolute;
+    top: -13px;
+    left: -2px;
+    font-size: 11px;
+    color: #006cd9;
+    font-weight: 400;
+}
+
+.time {
+    position: absolute;
+    bottom: -21px;
+    right: -6px;
+    margin: 0px;
+    font-size: 10px;
+    color: rgb(105, 105, 229);
+
+}

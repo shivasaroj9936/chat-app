@@ -1,0 +1,218 @@
+<!-- <section>
+                <div class="left">
+                    <div class="heading">
+                        <div class="data">
+                            <mat-icon class="icon">account_circle</mat-icon>
+                            <span class="profile-name"> {{(user.userDetails.name|titlecase)||'userName'}}</span>
+                        </div>
+            
+                        <div class="more">
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
+                                <button mat-menu-item (click)="addGroup()">
+                                    <mat-icon>add</mat-icon>
+                                    <span>Create Group</span>
+                                </button>
+                                <button mat-menu-item (click)="logOut()">
+                                    <mat-icon>logout</mat-icon>
+                                    <span>Logout</span>
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </div>
+            
+                    <ng-container *ngFor="let activeUser of usersList">
+                        <div class="active-users" *ngIf="activeUser.userId!=user.userDetails.userId">
+                            <button mat-button class="user-details" (click)="onUserSelection(activeUser)">
+                                <img src="assets/user1.jpeg" alt="" />
+                                <span class="user-name"> {{ (activeUser?.name|titlecase )||'User Name'}}</span>
+                            </button>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngFor="let group of groupList">
+                        <div class="active-users" *ngIf="this.user.userDetails.userId && areYouPresentInGroup(group)">
+                            <button mat-button class="user-details" (click)="onGroupSelection(group)">
+                                <img src="assets/group.svg" alt="" />
+                                <span class="user-name"> {{ (group?.name|titlecase )||'group Name'}}</span>
+                            </button>
+            
+                        </div>
+                    </ng-container>
+                    <h3 class="no-active-user" *ngIf="usersList.length==1">No User Active</h3>
+            
+                </div>
+
+
+
+
+                <div class="right">
+                    <div class="header" *ngIf="selectedUser">
+                        <div class="user">
+                            <p>
+                                <img *ngIf="chatType=='private'" src="assets/user1.jpeg" alt="" />
+                                <img *ngIf="chatType=='group'" src="assets/group.svg" alt="" />
+            
+                                <span class="user-name">{{(selectedUser.name | titlecase) || "User"}}</span>
+                            </p>
+                        </div>
+                        <div class="options">
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
+                                <button mat-menu-item (click)="clearChat()">
+                                    <mat-icon>clear_all</mat-icon>
+                                    <span>Clear Chat</span>
+                                </button>
+                                <button mat-menu-item (click)="addGroupMembers()" *ngIf="chatType=='group'">
+                                    <mat-icon>person_add</mat-icon>
+                                    <span>Add member</span>
+                                </button>
+                                <button mat-menu-item (click)="closeWindow()">
+                                    <mat-icon>close</mat-icon>
+                                    <span>Close Chat Window</span>
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="messsage-body">
+                        <ng-container *ngFor="let message of messageList?.reverse()">
+                            <app-message [message]="message" [user]="user" [chatType]="chatType" ></app-message>
+                        </ng-container>
+                        <div class="banner" *ngIf="!selectedUser">
+                            <img src="assets/chatBanner.svg" alt="">
+                        </div>
+                    </div>
+                    <form *ngIf="selectedUser" class="message-form" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+                        <div class="message-input">
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Message" formControlName="message" />
+                                <mat-error *ngIf="messageForm.controls['message'].hasError('maxlength')">Maximum 1000 charecter
+                                    allowed</mat-error>
+            
+                            </mat-form-field>
+                        </div>
+                        <button class="send-button" mat-raised-button type="submit" [disabled]="messageForm.invalid">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                    </form>
+                </div>
+</section> -->
+<ng-container>
+    <mat-toolbar>
+
+        <button mat-icon-button *ngIf="sidenav?.mode === 'over'" (click)="sidenav?.toggle()">
+            <mat-icon *ngIf="!sidenav?.opened">
+                menu
+            </mat-icon>
+            <mat-icon *ngIf="sidenav?.opened">
+                close
+            </mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav="matSidenav" class="content mat-elevation-z8">
+            <div class="left">
+                <div class="heading">
+                    <div class="data">
+                        <mat-icon class="icon">account_circle</mat-icon>
+                        <span class="profile-name"> {{(user.userDetails.name|titlecase)||'userName'}}</span>
+                    </div>
+
+                    <div class="more">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
+                            <button mat-menu-item (click)="addGroup()">
+                                <mat-icon>add</mat-icon>
+                                <span>Create Group</span>
+                            </button>
+                            <button mat-menu-item (click)="logOut()">
+                                <mat-icon>logout</mat-icon>
+                                <span>Logout</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+
+                <ng-container *ngFor="let activeUser of usersList">
+                    <div class="active-users" *ngIf="activeUser.userId!=user.userDetails.userId">
+                        <button mat-button class="user-details" (click)="onUserSelection(activeUser)"
+                            (click)="sidenav?.mode === 'over'?sidenav?.toggle():'ds'">
+                            <img src="assets/user1.jpeg" alt="" />
+                            <span class="user-name"> {{ (activeUser?.name|titlecase )||'User Name'}}</span>
+                        </button>
+                    </div>
+                </ng-container>
+                <ng-container *ngFor="let group of groupList">
+                    <div class="active-users" *ngIf="this.user.userDetails.userId && areYouPresentInGroup(group)">
+                        <button mat-button class="user-details" (click)="onGroupSelection(group)"
+                            (click)="sidenav?.mode === 'over'?sidenav?.toggle():'ds'">
+                            <img src="assets/group.svg" alt="" />
+                            <span class="user-name"> {{ (group?.name|titlecase )||'group Name'}}</span>
+                        </button>
+
+                    </div>
+                </ng-container>
+                <h3 class="no-active-user" *ngIf="usersList.length==1">No User Active</h3>
+
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="right mat-elevation-z8">
+                <div class="header" *ngIf="selectedUser">
+                    <div class="user">
+                        <p>
+                            <img *ngIf="chatType=='private'" src="assets/user1.jpeg" alt="" />
+                            <img *ngIf="chatType=='group'" src="assets/group.svg" alt="" />
+
+                            <span class="user-name">{{(selectedUser?.name | titlecase) || "User"}}</span>
+                        </p>
+                    </div>
+                    <div class="options">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
+                            <button mat-menu-item (click)="clearChat()">
+                                <mat-icon>clear_all</mat-icon>
+                                <span>Clear Chat</span>
+                            </button>
+                            <button mat-menu-item (click)="addGroupMembers()" *ngIf="chatType=='group'">
+                                <mat-icon>person_add</mat-icon>
+                                <span>Add member</span>
+                            </button>
+                            <button mat-menu-item (click)="closeWindow()">
+                                <mat-icon>close</mat-icon>
+                                <span>Close Chat Window</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <div class="messsage-body">
+                    <ng-container *ngFor="let message of messageList?.reverse()">
+                        <app-message [message]="message" [user]="user" [chatType]="chatType"></app-message>
+                    </ng-container>
+                    <div class="banner" *ngIf="!selectedUser">
+                        <img src="assets/chatBanner.svg" alt="">
+                    </div>
+                </div>
+                <form *ngIf="selectedUser" class="message-form" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+                    <div class="message-input">
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Message" formControlName="message" />
+                            <mat-error *ngIf="messageForm.controls['message'].hasError('maxlength')">Maximum 1000 charecter allowed</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <button class="send-button" mat-raised-button type="submit" [disabled]="messageForm.invalid">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </form>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</ng-container>

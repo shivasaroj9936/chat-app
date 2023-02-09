@@ -1,0 +1,18 @@
+<section>
+    <h1 mat-dialog-title>Add Group Members</h1>
+    <div mat-dialog-content>
+        <mat-selection-list #selectedUsers>
+            <mat-list-option *ngFor="let user of usersList;let ind=index"
+                (click)="onAreaListControlChanged(selectedUsers)" [value]="user"
+                [disabled]="areYouPresentInGroup(user) && (data.admin.userId==user.userId)"
+                [selected]="areYouPresentInGroup(user)">
+                {{ind+1}}. {{ user.name }}
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+            [disabled]="usersList.length==1">Submit</button>
+    </div>
+</section>

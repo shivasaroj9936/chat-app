@@ -1,0 +1,39 @@
+section {
+    position: relative;
+    height: 100vh;
+    .form_wrapper {
+        img {
+            height: 150px;
+        }
+        border-radius: 5px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.75);
+        clip-path: inset(-15px -15px -15px -15px);
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        // width: 25%;
+        background-color: #fff;
+        padding: 30px;
+
+        mat-form-field {
+            width: 100%;
+            margin: 3px
+        }
+
+        .btn_group {
+            button {
+                width: 100%;
+                // color: aqua;
+                background-color: rgba(37, 139, 255);
+                padding: 4px;
+                margin: 3px;
+                font-size: 20px;
+            }
+            margin-bottom: 10px;
+        }
+
+    }
+}

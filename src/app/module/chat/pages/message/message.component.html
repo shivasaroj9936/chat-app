@@ -1,0 +1,25 @@
+<div class="message right" *ngIf="message.senderUserId == user.userDetails.userId; else leftMsg">
+    <p>
+        <span class="sender-name" *ngIf="chatType=='group'">{{(message.senderName|titlecase )|| 'sender name'}}</span>
+        <span class="text" *ngIf="message.message.length<160"> {{ message.message }}</span>
+        <span class="text" *ngIf="message.message.length>=160"> 
+            
+            <!-- {{ message.message }} -->
+            {{(show) ? message.message : message.message | slice:0:160}} 
+            <a href="javascript:;" (click)="show=!show">{{show?'  read less':" ....read more"}}</a>
+        
+        </span>
+
+
+        <span class="time">{{message.time|date:'HH:mm a'}}</span>
+    </p>
+</div>
+<ng-template #leftMsg>
+    <div class="message left"   >
+        <p>
+            <span class="sender-name" *ngIf="chatType=='group'">{{(message.senderName|titlecase )||'sender name'}}</span>
+            <span class="text"> {{ message.message }}</span>
+            <span class="time">{{message.time|date:'HH:mm a'}}</span>
+        </p>
+    </div>
+</ng-template>

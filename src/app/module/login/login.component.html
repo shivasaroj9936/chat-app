@@ -1,0 +1,45 @@
+<section >
+    <div class="form_wrapper">
+        <img src="/assets/chat_logo.webp" alt="logo">
+        <h2>Sign In </h2>
+        <form [formGroup]="loginForm" (submit)="login()" class="form-inner">
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name </mat-label>
+                    <input matInput formControlName="name" />
+                    <mat-error *ngIf="loginForm.controls['name'].hasError('required')">Name is Requierd</mat-error>
+                    <mat-error *ngIf="loginForm.controls['name'].hasError('minlength')">minimum length should be 3</mat-error>
+                    <mat-error *ngIf="loginForm.controls['name'].hasError('maxlength')">Maximum 20 charecter allowed</mat-error>
+                    <mat-error *ngIf="loginForm.controls['name'].hasError('pattern')">Please Enter Valid Name</mat-error>
+
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email ID/ User ID</mat-label>
+                    <input matInput formControlName="email"  />
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('minlength')">minimum length should be 5</mat-error>
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('pattern')">enter valid email</mat-error>
+
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('required')">Email is Requierd</mat-error>
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('maxlength')">Maximum 15 charecter allowed</mat-error>
+
+                </mat-form-field>
+
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" />
+                <mat-error *ngIf="loginForm.controls['password'].hasError('required')">Password is Requierd</mat-error>
+                <!-- <mat-error *ngIf="loginForm.controls['password'].hasError('minlength')">minimum length should be 8</mat-error> -->
+                <mat-error *ngIf="loginForm.controls['password'].hasError('pattern')"> password should be minimum 8 and 16 charecter with Numbers and Special characters charecter allowed</mat-error>
+                
+                <mat-icon matSuffix class="fade" (click)="hide = !hide">{{hide ? "visibility_off" : "visibility"}}
+                </mat-icon>
+            </mat-form-field>
+            <div class="btn_group">
+                <button  mat-raised-button type="submit"
+                    color="primary" class="fullwidth">Log in</button>
+            </div>
+        </form>
+    </div>
+
+</section>

@@ -1,0 +1,25 @@
+<section>
+  <h1 mat-dialog-title>Create Group</h1>
+
+  <form [formGroup]="gorupForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Group Name</mat-label>
+        <input matInput formControlName="groupName" />
+        <mat-error *ngIf="gorupForm.controls['groupName'].hasError('required')">Group Name is Requierd</mat-error>
+        <mat-error *ngIf="gorupForm.controls['groupName'].hasError('maxlength')">Maximum 15 charecter allowed
+        </mat-error>
+        <mat-error *ngIf="gorupForm.controls['groupName'].hasError('pattern')">Please Enter Valid Name</mat-error>
+
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="warn" type="reset" (click)="onNoClick(true)">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit" (keydown.enter)="$event.preventDefault()" cdkFocusInitial>
+        Submit
+      </button>
+    </div>
+  </form>
+</section>
